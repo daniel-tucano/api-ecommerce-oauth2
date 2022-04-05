@@ -1,0 +1,10 @@
+spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+server.port: 9090
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:18080/auth/realms/api-ecommerce
+          jwk-set-uri: http://localhost:18080/auth/realms/api-ecommerce/protocol/openid-connect/certs

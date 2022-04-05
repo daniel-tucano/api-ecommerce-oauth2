@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  keycloak:
+    image: jboss/keycloak
+    ports:
+      - 18443:8443
+      - 18080:8080
+      - 19990:9990
+    depends_on:
+      # Just a delay to wait for postgres! This is not recommended!
+      - postgres
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: Pa55w0rd
+      POSTGRES_PORT_5432_TCP_ADDR: 127.0.0.1
+
+  postgres:
+    image: postgres:9.5
+    volumes:
+      - postgres-volume-poc:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: keycloak
+      POSTGRES_HOST: postgres
+volumes:
+  postgres-volume-poc:
