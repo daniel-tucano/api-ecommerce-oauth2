@@ -19,6 +19,7 @@ services:
       DB_PASSWORD: password
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: Pa55w0rd
+      JAVA_OPTS_APPEND: "-Dkeycloak.profile.feature.upload_scripts=enabled"
       POSTGRES_PORT_5432_TCP_ADDR: 127.0.0.1
 
   postgres:
